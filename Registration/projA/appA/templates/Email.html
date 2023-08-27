@@ -1,0 +1,16 @@
+{% autoescape off %}
+
+Registration Details:
+
+Name: {{name}}
+Address: {{address}}
+Phone: {{phone}}
+email: {{email}}
+pincode: {{pincode}}
+{% if file %}
+<p><strong>Attached File:</strong> <a href="{{ file.url }}">{{ file.name }}</a></p>
+{% endif %}
+  
+
+
+{% endautoescape %} 

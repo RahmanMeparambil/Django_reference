@@ -1,0 +1,1 @@
+Use the primary email in views.py within the addA at line 20 and add a working email address and password to info.py inside the projA .
