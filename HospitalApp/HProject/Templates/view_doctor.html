@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<section class="home">
+    <div style="margin:10rem">
+        <h1>{{doc.Name}}</h1>
+        <h1 style="font-size: 2rem;">{{doc.Specialization.Specialization_name}}</h1>
+        <img src="{{ doc.Image.url }}" alt="{{ doc.Name }}">
+        <p style="font-size:1rem">{{doc.Description}}</p>
+    </div>
+    <form action="{% url 'bookappointment' %}" method="POST">
+        {% csrf_token %}
+        {% if slot.count != 0 %}
+        <h2>Book Appointment</h2>
+
+        <input type="text" placeholder="Your Name" class="box" name="name" required>
+        <input type="text" placeholder="your email" class="box" name="email" required>
+        <input type="hidden" value = "{{ doc.Specialization.Specialization_name }}" name="specialization">
+        <input type="hidden" value = "{{ doc.Name }}" name="doctor">
+
+        <div style="display:flex;justify-content: left;">
+            Choose Slot
+            <select name="time" required>
+                <option value="Empty" selected ></option>  
+
+                {% for s in slots %}
+                <option value="{{s.id}}" selected >{{s.Date}} ( {{s.Start_time}} - {{s.End_time}} )</option>  
+                {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+        
+        <input type="submit" value="book now" class="btn" required>
+    </form>
+</section>
+{% endblock %}

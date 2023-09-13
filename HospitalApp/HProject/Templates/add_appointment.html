@@ -1,0 +1,51 @@
+
+{% load static %}
+
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+
+<center>
+
+    <h1>Create Appointment</h1>
+    <form method="post" action="{% url 'add_appointment' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+    
+        <div style="display:flex;justify-content: center;">
+            Doctor
+            <select name="doctor" required>
+                {% for i in docs %}
+                    <option value="{{i.id}}">Dr . {{i.Name.capitalize}} ({{i.Specialization.Specialization_name}})</option>
+                {% endfor %}
+            </select>
+        </div><br>
+        Date
+        <input type="date" name="date" class="box" required>
+        <div style="display:flex;justify-content: center;">
+
+            Time
+            <select name="time" required>
+                <option value="09:00:00,12:00:00" selected >9:00 AM - 12:00 PM</option>  
+                <option value="03:00:00,06:00:00">3:00 PM - 6:00 PM</option>
+            </select>
+ 
+        </div>
+        <br>
+        <input type="submit" value="Create Appointment">
+    </form>
+        
+    </center>
+
+    
+
+

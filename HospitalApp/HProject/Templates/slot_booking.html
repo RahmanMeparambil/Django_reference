@@ -1,0 +1,75 @@
+{% extends 'base.html'%}
+
+
+
+{% block title %}Slots{% endblock %}
+
+{% load static %}
+<html>
+<head>
+    <title>Slot Booking</title>
+</head>
+<body>
+    {% block content %}
+	<br><br><br><br><br><br>
+    <center>
+        
+        <form method="post" action="{% url 'create_slot' %}">
+            {% csrf_token %}
+            <label for="date">Date:</label>
+            <input type="date" name="date" required><br>
+            <label for="Start_time">StartTime:</label>
+            <input type="time" name="start_time" required><br>
+			<label for="End_time">EndTime:</label>
+            <input type="time" name="end_time" required><br>
+            <input type="submit" value="Book Slot">
+        </form>
+    </center>
+	<br>
+    <h3 align="center">Available Slots</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Date
+		</th>
+		<th>
+			Start_time
+		</th>
+		<th>
+			End_time
+		</th>
+
+	{% for i in s %}
+	<tr>
+		<td>
+			{{i.Date}}
+		</td>
+		<td>
+			{{i.Start_time}}
+		</td>
+		<td>
+			{{i.End_time}}
+		</td>
+
+		<td>
+			<button type="submit" onclick="location.href='{% url 'edit_slot' i.id %}'" name='t_h'>Edit</button>
+		</td>
+		<td>
+			<button type="submit" onclick="location.href='{% url 'delete_slot' i.id %}'" name='del'>Delete</button>
+		</td>
+	</tr>
+	{% endfor %}
+</table><br><br>
+<div align="center">
+	<button type="submit" onclick="location.href='{% url 'doctor_home' %}'" name='mybtn2'>Back</button>
+</div>
+{% endblock %}
+</body>
+</html>

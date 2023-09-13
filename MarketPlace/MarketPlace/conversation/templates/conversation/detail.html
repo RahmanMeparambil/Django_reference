@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Conversation{% endblock%}
+
+{% block content %}
+    {% for message in conversation.messages.all %}
+    <div>
+        <div>
+            <p><strong>{{message.created_by.username}}</strong> @ {{message.created_at}}</p>
+            <p>{{message.content}}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <div>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button>submit</button>
+        </form>
+    </div>
+{% endblock%}

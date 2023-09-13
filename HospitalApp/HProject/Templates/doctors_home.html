@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{% block navbar %}
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="{%url 'appointment'%}">Appointments</a>
+        <a href="{% url 'slots' %}">Slots</a>
+        <a href="{% url 'messages' %}">Messages</a> 
+        <a href="{% url 'signout' %}">SignOut</a>
+    </nav>
+{% endblock %}

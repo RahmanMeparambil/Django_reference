@@ -1,0 +1,76 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+<table  style="width:100%">
+	<tr>
+		<th>
+			Date
+		</th>
+		<th>
+			Patient_name
+		</th>
+		<th>
+			Patient_email
+		</th>
+        <th>
+            Doctor
+        </th>
+        <th>
+			Specialization
+		</th>
+        <th>
+            Amount
+        </th>
+  
+
+
+	{% for i in rec %}
+	<tr>
+		<td>
+			{{i.Date}}
+		</td>
+		<td>
+			{{i.Name}}
+		</td>
+        <td>
+			{{i.Email}}
+		</td>
+		<td>
+			{{i.Doctor_reg.Name}}
+		</td>
+        <td>
+			{{i.Doctor_reg.Specialization.Specialization_name}}
+		</td>
+
+        <td>
+			{{i.Amount}}
+		</td>
+
+
+	</tr>
+	{% endfor %}
+</table><br><br>
+
+
+
+    
+{%endblock%}
+
+
+<h3 align="center">Receipts</h3>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>

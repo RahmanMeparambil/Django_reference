@@ -1,0 +1,80 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+
+<h1 align="center">APPOINTMENTS</h1>
+<div style="color:blue;" align="center">
+        {% if messages %}
+            {% for msg in messages %}
+                    {{ msg }}
+            {% endfor %}
+        {% endif %}
+</div>
+<table  style="width:100%">
+	<tr>
+		<th>
+			Appointment_Date
+		</th>
+		<th>
+			Patient_name
+		</th>
+		<th>
+			Patient_email
+		</th>
+        <th>
+            Doctor
+        </th>
+        <th>
+			Specialization
+		</th>
+		<th>
+			Start_time
+		</th>
+		<th>
+			End_time
+		</th>
+        <th>
+            Status
+        </th>
+  
+
+
+	{% for i in appointment %}
+	<tr>
+		<td>
+			{{i.Appointment_date}}
+		</td>
+		<td>
+			{{i.Patient_name}}
+		</td>
+        <td>
+			{{i.Patient_email}}
+		</td>
+		<td>
+			{{i.Doctor_reg.Name}}
+		</td>
+        <td>
+			{{i.Specialization}}
+		</td>
+        <td>
+			{{i.Start_time}}
+		</td>
+        <td>
+			{{i.End_time}}
+		</td>
+        <td>
+			{{i.Status}}
+		</td>
+
+
+	</tr>
+	{% endfor %}
+</table><br><br>
+{% endblock %}

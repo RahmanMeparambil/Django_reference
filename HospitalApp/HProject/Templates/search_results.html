@@ -1,0 +1,9 @@
+{% load static %}
+<div>
+    {% for u in results %}
+    <div class="box" style = " flex: 0 0 300px;text-align:center;margin: 0 10px;border-style:solid;"  >
+        <img src="{{ MEDIA_URL }}{{ d.Image }}" alt="">
+        <h3>{{ u.username }}</h3>
+    </div>
+    {%endfor%}
+</div>

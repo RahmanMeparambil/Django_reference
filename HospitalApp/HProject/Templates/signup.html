@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block title %}SignUp{% endblock %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+</head>
+{% block content%}
+<br><br><br><br><br><br>
+<center>
+<form action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+    <div class="imgcontainer" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;">
+      <label><h1>SIGNUP</h1></label>
+    </div><br>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+    <div class="container">
+    <label><b>USERNAME</b></label>&nbsp&nbsp&nbsp
+    <input type="text" placeholder="Enter user name" name="user_name" required><br><br>
+
+    <label><b>FULLNAME</b></label>&nbsp&nbsp&nbsp
+    <input type="text" placeholder="Enter full name" name="full_name" required><br><br>
+
+    <label><b>EMAIL</b></label>&nbsp&nbsp&nbsp
+    <input type="email" placeholder="Enter email" name="email" required><br><br>
+
+
+    <label><b>PASSWORD</b></label>&nbsp&nbsp&nbsp&nbsp
+    <input type="password" placeholder="Enter password" name="pword" required><br><br>
+
+    <button type="submit">SignUp</button>&nbsp&nbsp&nbsp&nbsp
+
+    <button type="" onclick="location.href='{% url 'home' %}'" name='mybtn2'>Back</button>
+
+    </div>
+    <br>
+    already signed up <a href='{% url 'login' %}'>login</a>
+</form>
+</center>
+
+{% endblock %}
+<script>
+    window.onload = function() {
+      var messages = document.getElementsByClassName("messages");
+      if (messages.length > 0) {
+        setTimeout(function() {
+          messages[0].style.display = "none";
+          // Remove the messages from the DOM after hiding them
+          messages[0].parentNode.removeChild(messages[0]);
+        }, 5000); // Adjust the time (in milliseconds) based on how long you want to display the messages.
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static%}
+
+
+<ul style="list-style:none">
+    {% for data in msg%}
+        <li  >
+            <div style="border-style:solid;margin:1rem;border-width:0.1rem" >
+                User: {{ data.Sender }} 
+                <p>{{ data.Content }} </p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<form action="{%url 'add_message' id=recipient %}" action="POST">
+      <input type="hidden" value="msg.recipient" name="recipient">
+      <input type="hidden" value="msg.sender" name="sender">
+      <input type="text" name="message">
+      <button type="submit">send</button>
+</form>

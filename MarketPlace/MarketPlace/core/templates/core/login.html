@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+
+<h3>Login</h3>
+<form method = 'POST' action=".">
+    {% csrf_token %}
+    
+    <label for="username">Username</label>
+    {{ form.username }}
+
+    <br>
+    <label for="password1">Password</label>
+    {{ form.password }}
+    <br>
+
+
+    {% if form.errors or form.non_field_errors %}
+        <p>Form Errors:</p>
+        {% for field in form %}
+            <p>{{ field.name }} Errors: {{ field.errors }}</p>
+        {% endfor %}
+        <p>Non-Field Errors: {{ form.non_field_errors }}</p>
+    {% endif %}
+
+
+ 
+    <button type="submit"> Login </button>
+</form>
+
+{% endblock %}

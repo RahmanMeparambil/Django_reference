@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Page</title>
+</head>
+<body>
+    <h1>Messages</h1>
+
+    <ul style="list-style:none">
+        {% for data in user_msg_data %}
+            <li onclick="window.location.href='{% url 'view_message' id=data.user.id %}'" >
+                <div style="border-style:solid;margin:1rem;border-width:0.1rem" >
+                    User: {{ data.user.username }},
+                    Unread Messages: {{ data.unread_count }},
+                    Last Message: {{ data.last_message.Content }} 
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

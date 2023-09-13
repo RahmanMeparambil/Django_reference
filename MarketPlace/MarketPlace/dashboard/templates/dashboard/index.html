@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Home{%endblock%}
+
+{% block content %}
+<hr>
+<center>
+<h3>New Items</h3>
+{% for item in items%}
+<div >
+       <img src="{{ item.image.url }}" width="150" height="150"><br>
+       {{ item.name }} <br>
+       {{ item.price }} <br>
+       <a href="{% url 'item:detail' item.id %}">show details</a><br><br>
+</div>
+{% endfor %}
+ 
+<br>
+
+<br>
+</center>
+<hr>
+{% endblock %}

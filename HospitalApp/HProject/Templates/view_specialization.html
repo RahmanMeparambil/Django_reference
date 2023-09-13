@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content%}
+<section class="home">
+    <div style="margin:10rem">
+        <h1 style="font-size: 2rem;">{{spec.Specialization_name}}</h1>
+        <img src="{{ spec.Image.url }}" alt="{{ spec.Specialization_name }}" width="1000" height="400">
+        <br>
+        <br>
+        <p style="font-size:1rem">{{spec.Description}}</p>
+    </div>
+    <form action="{% url 'bookappointment' %}" method="POST">
+        {% csrf_token %}
+        <h2>Book Appointment</h2>
+        <input type="text" placeholder="Your Name" class="box" name="name" required>
+        <input type="text" placeholder="your email" class="box" name="email" required>
+        <input type="hidden" value = "{{ spec.Specialization_name }}" name="specialization">
+        <input type="date" name="date" class="box" required>
+        <div style="display:flex;justify-content: left;">
+            Choose Time
+            <select name="time" required>
+                <option value="09:00:00,12:00:00" selected >9:00 AM - 12:00 PM</option>  
+                <option value="03:00:00,06:00:00">3:00 PM - 6:00 PM</option>
+            </select>
+        </div>
+        <input type="submit" value="book now" class="btn" required>
+    </form>
+</section>
+<br>
+<br>
+{% endblock %}

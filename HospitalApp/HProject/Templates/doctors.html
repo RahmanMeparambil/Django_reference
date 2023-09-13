@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}doctors{% endblock%}
+       {% block content%}
+
+        <section class="doctors" id="doctors">
+            <h1 class="heading">our <span>doctors</span> </h1>
+            {% for doc in docs %}
+            <div class="box-container">
+                
+                <div class="box">
+                    <img src="{{ doc.Photo.url }}" alt="">
+                    <h3>{{doc.Name}}</h3>
+                    <span>{{doc.Specialization.Specialization_name}}</span>
+                    <a href="#" class="btn">Take an Appointment</a>
+
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                        <a href="" class="fab fa-linkedin"></a>
+                    </div>
+                
+                </div>
+            {% endfor %}
+
+        </section>
+        
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% load static %}
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <a href="{% url 'home'%}" class="logo"><i class = "fas fa-heartbeat"></i>medcare. </a>
+        <nav class="navbar">
+            {% block navbar%}
+
+            {% endblock %}
+
+        </nav>
+        <!--- menu button --->
+        <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+        {% block content %}
+        {% endblock %}
+
+
+            <!-- footer -->
+            <section class="footer">
+                <div class="box-container">
+                    <div class="box">
+                        <h3>Contact info</h3>
+                        <a href="#"><i class="fas fa-phone"> +919633754366</i></a>
+                        <a href="#"><i class="fas fa-envelope">plotracer001@gmail.com</i></a>
+                        <a href="#"><i class="fas fa-map-marker-alt"> Mumbai, India - 40010</i></a>
+                    </div>
+                    <div class="box">
+                        <h3>Follow us</h3>
+                        <a href="#" class="fab fa-facebook-f"> facebook</a>
+                        <a href="#" class="fab fa-instagram"> instagram</a>
+                        <a href="" class="fab fa-linkedin"> linkedIn</a>
+                    </div>
+                </div>
+            </section>
+            <script src = "{% static 'js/script.js' %}"></script>
+    </body>

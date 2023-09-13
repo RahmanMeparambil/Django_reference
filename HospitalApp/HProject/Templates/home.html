@@ -1,0 +1,138 @@
+{% extends 'base.html'%}
+{% load static %}
+
+
+{% block title %}Home{% endblock %}
+
+
+{% block navbar %}
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#services">Services</a>
+        <a href="#doctors">doctors</a>
+        <!-- <a href="#review">review</a> -->
+        <a href="{% url 'login' %}">LogIn</a>
+        <!-- <a href="{% url 'signup' %}">SignUp</a> -->
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+        <section class="home" id="home">
+
+            <div class="image">
+                <img src="{% static 'images/home.jpg' %}" alt="">
+            </div>
+
+            <div class="content">
+                <h3>stay safe stay healthy</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <form action="{% url 'bookappointment' %}" method="POST">
+                    {% csrf_token %}
+                    <h2>Book Appointment</h2>
+                    <input type="text" placeholder="Your Name" class="box" name="name" required>
+                    <input type="text" placeholder="your email" class="box" name="email" required>
+
+                    <input type="date" name="date" class="box" required>
+                    <div style="display:flex;justify-content: left;">
+                        Choose Time
+                        <select name="time" required>
+                            <option value="09:00:00,12:00:00" selected >9:00 AM - 12:00 PM</option>  
+                            <option value="03:00:00,06:00:00">3:00 PM - 6:00 PM</option>
+                        </select>
+                        Choose Category 
+                        <select name="specialization" required>
+                            {% for i in spec %}
+                                <option value="{{i.Specialization_name}}">{{i.Specialization_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type="submit" value="book now" class="btn" required>
+                </form>
+            </div>
+        </section>
+        <br>
+
+        <section class="services" id="services">
+            <div>
+                <h1 class="heading">Our <span>services</span></h1>
+
+            </div>
+            <div class="box-container" >
+                {%for s in spec%}
+                <div class="box" onclick="window.location.href='{% url 'view_specialization' spec_id=s.id %}'">
+                    <i class="{{s.Icon}}"></i>  
+                    <h3>{{s.Specialization_name}}</h3>
+                </div>
+                {% endfor %}
+        </section>
+
+
+
+        
+
+        <section class="doctors" id="doctors" style="text-align: center;">
+            <h1 class="heading">our <span>doctors</span></h1>
+            <div class="slider-container" style = "overflow: hidden;display: flex;justify-content: center;">
+                <div class="slider" style = "    display: flex;flex-wrap: nowrap;transition: transform 0.3s ease-in-out;">
+                    {% for d in doc %}
+                    <div class="box" style = " flex: 0 0 300px;margin: 0 10px;" onclick="window.location.href='{% url 'view_doctor' doc_id=d.id %}'" >
+                        <img src="{{ d.Image.url }}" height ="200" width ="200" style="border-radius: 300px;">
+                        <h3>{{ d.Name }}</h3>
+                        <span>{{ d.Specialization.Specialization_name }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="controls" style = "text-align: center;margin-top: 20px;">
+                <button class="prev-btn" style=" margin-right: 10px;   background: transparent;border: none;font-size: 24px;cursor: pointer;">&#10094;</button>
+                <button class="next-btn" style="    background: transparent;border: none;font-size: 24px;cursor: pointer;">&#10095;</button>
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    const slider = $('.slider');
+    const prevBtn = $('.prev-btn');
+    const nextBtn = $('.next-btn');
+    const boxWidth = $('.box').outerWidth() + 20; // Add 20px for the margin
+    const numVisibleBoxes = Math.floor(slider.parent().width() / boxWidth);
+    let currentIndex = 0;
+
+    function slide(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        } else if (currentIndex > $('.box').length - numVisibleBoxes) {
+            currentIndex = $('.box').length - numVisibleBoxes;
+        }
+        const translateX = -currentIndex * boxWidth;
+        slider.css('transform', `translateX(${translateX}px)`);
+    }
+
+    prevBtn.on('click', function() {
+        slide(-1);
+    });
+
+    nextBtn.on('click', function() {
+        slide(1);
+    });
+});
+</script>
+
+        
+    
+
+        
+
+
+    {% endblock %}

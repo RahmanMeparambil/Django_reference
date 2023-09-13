@@ -1,0 +1,24 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slot edit</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'trt.css' %}">
+</head> 
+<div align="center">
+<form method="post" action="{% url 'edit_slot' s.id  %}">
+    {% csrf_token %}
+    <h3><b>SLOT EDIT</b></h3>
+                <label>Date</label><br><br>
+                <input type="date" value="{{s.Date}}" name="date" required><br><br>
+                <label>Start_time</label><br><br>
+                <input type="time" value="{{s.Slot_time}}" name="start_time" required><br><br>
+                <label>End_time</label><br><br>
+                <input type="time" value="{{s.End_time}}" name="end_time" required><br><br>
+
+                <input type="submit" value="Submit">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="reset" value="Cancel">
+</form>
+</div>
+</body>
+</html>

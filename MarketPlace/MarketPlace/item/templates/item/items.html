@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Browse{% endblock %}
+
+{% block content %}
+<center>
+<div style="display:grid;grid-template-columns: 300px 1fr ;   ">
+    <div >
+        <form action="{% url 'item:items' %}" method="get">
+            search
+            <input type="text"  placeholder="search furnitures,clothes etc." name="query" value= {{query}}>
+            <button>Search</button>
+        </form>
+        <div>
+            <ul style="list-style:None">
+                <p><strong>Categories</strong></p>
+                {% for category in categories %}
+                    <li >
+                        <a href="{% url 'item:items' %}?query=&category={{ category.id }}">{{category.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+    <div style="display:grid;grid-template-columns: 300px 300px 300px;">
+        <div>
+            {% for item in items %}
+            <img src="{{ item.image.url }}" alt="" width="250" height="250">
+            {{ item.name }}
+            {{ item.decription }}
+        {% endfor %}
+        </div>
+
+
+    </div>    
+</div>
+</center>
+{% endblock %}

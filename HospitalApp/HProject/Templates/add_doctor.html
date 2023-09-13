@@ -1,0 +1,63 @@
+{% extends 'base.html'%}
+
+
+{% block title %}Add Doctor{% endblock %}
+{% load static %}
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+{% block content %}
+<br><br><br><br><br>
+<center>
+
+<h1>Create a Doctor</h1>
+<form method="post" action="{% url 'add_doctor' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    IMAGE: 
+    <input type="file" value="Upload new image" name="imgg1" ><br><br>
+
+
+
+    <div style="display:flex;justify-content: center;">
+        Class
+        <select name="class" required>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+        </select>
+    
+
+
+        Specialization 
+        <select name="specialization" required>
+            {% for i in spec %}
+                <option value="{{i.Specialization_name}}">{{i.Specialization_name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br><br>
+
+    <input type="submit" value="Create Doctor">
+    </div><br>
+
+    </div><br>
+
+
+
+
+
+
+</form>
+    
+</center>
+{% endblock %}

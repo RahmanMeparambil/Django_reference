@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div style="color:blue;margin-top:100px;" align="center" class="alert alert-primary" role="alert">
+    {% if messages %}
+        {% for msg in messages %}
+                {{ msg }}
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+
+    
+{%endblock%}
+{% block navbar %}
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="{%url 'appointment'%}">Appointments</a>
+        <a href="{% url 'reciept' %}">Reciept</a>
+        <a href="{% url 'doctors' %}">Doctors</a>
+        <a href="{% url 'signout' %}">SignOut</a>
+    </nav>
+{% endblock %}
