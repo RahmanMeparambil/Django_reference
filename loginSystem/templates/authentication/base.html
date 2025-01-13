@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- External CSS (e.g., Bootstrap or custom styles) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Add your own CSS file if needed -->
+
+    <!-- Favicon (Optional) -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Meta Tags for SEO (Optional) -->
+    <meta name="description" content="A brief description of your page.">
+    <meta name="keywords" content="HTML, CSS, JavaScript, template">
+    <meta name="author" content="Your Name">
+
+    <!-- Open Graph Meta Tags for social sharing (Optional) -->
+    <meta property="og:title" content="Your Page Title">
+    <meta property="og:description" content="Description of your page for social media.">
+    <meta property="og:image" content="path_to_image.jpg">
+    <meta property="og:url" content="https://www.yourwebsite.com">
+</head>
+
+<body>
+
+    <!-- Your content goes here -->
+    <div class="container">
+        <h1>Welcome to My Website</h1>
+        <p>This is a simple HTML login example.</p>
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- External JavaScript files (jQuery, Bootstrap, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script> <!-- Add your own JS file if needed -->
+
+</body>
+
+</html>

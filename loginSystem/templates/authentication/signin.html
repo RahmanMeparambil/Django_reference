@@ -1,0 +1,19 @@
+{% extends 'authentication/base.html' %}
+{% block title %}signin{% endblock %}
+{% block content %}
+<div>
+    <form action="." method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+
+        <label for="pass1">Password</label>
+        <input type="password" id="pass1" name="pass1" required>
+        <br>
+
+        <button type="submit">Sign In</button>
+
+    </form>
+</div>
+{% endblock%}

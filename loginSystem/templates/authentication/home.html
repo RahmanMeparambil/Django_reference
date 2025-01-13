@@ -1,0 +1,28 @@
+{% extends 'authentication/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div style="display: flex; ">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+                {{ message }}
+                <!-- Close button -->
+                <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+                
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+<h3>Home</h3>
+{% if user.is_authenticated %}
+    <h3>hi,{{fname}}</h3>
+    <button type="submit"><a href="/signout">Sign Out</a></button>
+{% else %}
+<button type="submit"><a href="/signup">Sign Up</a></button>
+<button type="submit"><a href="/signin">Sign In</a></button>
+{% endif %}
+
+{% endblock %}
