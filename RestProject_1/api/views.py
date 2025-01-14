@@ -1,8 +1,12 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ItemSerializer,Item
+from rest_framework import viewsets
 
 
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
 
 
 @api_view(['GET'])
