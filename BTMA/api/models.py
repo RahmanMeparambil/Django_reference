@@ -23,8 +23,8 @@ class Tournament(models.Model):
         return self.name
 
 
-# Match Model
-class Match(models.Model):
+# Matches Model
+class Matches(models.Model):
     ROUND_CHOICES = [
         ('Round of 32', 'Round of 32'),
         ('Round of 16', 'Round of 16'),
