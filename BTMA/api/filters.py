@@ -9,10 +9,3 @@ class PlayerFilter(django_filters.FilterSet):
             'name':['iexact', 'icontains' ],
             'nationality':['iexact', 'icontains' ],
         }
-
-class TournamentFilter(django_filters.FilterSet):
-    class Meta:
-        model = Tournament
-        fields = {
-            'name':['iexact', 'icontains' ],
-        }

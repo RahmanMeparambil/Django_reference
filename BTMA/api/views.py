@@ -1,7 +1,8 @@
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 from .models import Player, Tournament, Match
 from .serializers import PlayerSerializer, TournamentSerializer
-from .filters import PlayerFilter, TournamentFilter
+from .filters import PlayerFilter
 
 
 # player viewset
@@ -21,4 +22,5 @@ class PlayerRankingViewSet(viewsets.ReadOnlyModelViewSet):
 class TournamentViewSet( viewsets.ModelViewSet ):
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
-    filterset_class = TournamentFilter
+    filter_backends = (SearchFilter,)
+    search_fields = ['name']
