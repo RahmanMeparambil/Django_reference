@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'django_filters',
+    'drf_spectacular',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -130,5 +132,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Rest framework
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication',],
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Badminton Tournament API',
+    'DESCRIPTION': 'API for managing badminton tournaments, including players, tournaments, and matches.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,  
+}
+
