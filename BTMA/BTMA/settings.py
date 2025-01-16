@@ -137,16 +137,13 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication',],
 }
-
+# lifetime of access and refresh tokens.
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # Increase access token lifetime (e.g., 1 hour)
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),   # Increase refresh token lifetime (e.g., 7 days)
-    'ROTATE_REFRESH_TOKENS': False,  # Optional: Keep a single refresh token for the user
-    'BLACKLIST_AFTER_ROTATION': False,  # Optional: Disable blacklisting of refresh tokens
-    'ALGORITHM': 'HS256',  # JWT algorithm (HS256 is a common one)
-    'SIGNING_KEY': 'your-secret-key',  # Secret key used for signing the token
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1), 
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),  
 }
 
+# configuring drf-spectacular
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Badminton Tournament API',
     'DESCRIPTION': 'API for managing badminton tournaments, including players, tournaments, and matches.',
