@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,6 +136,15 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication',],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # Increase access token lifetime (e.g., 1 hour)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),   # Increase refresh token lifetime (e.g., 7 days)
+    'ROTATE_REFRESH_TOKENS': False,  # Optional: Keep a single refresh token for the user
+    'BLACKLIST_AFTER_ROTATION': False,  # Optional: Disable blacklisting of refresh tokens
+    'ALGORITHM': 'HS256',  # JWT algorithm (HS256 is a common one)
+    'SIGNING_KEY': 'your-secret-key',  # Secret key used for signing the token
 }
 
 SPECTACULAR_SETTINGS = {
