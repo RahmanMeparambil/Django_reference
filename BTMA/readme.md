@@ -1,4 +1,4 @@
-Tournament API
+Badminton Tournament API
 This is a Django-based project with token authentication using Django Rest Framework (DRF). The project is designed to provide secure endpoints for managing data related to players, tournaments, and matches.
 
 
@@ -70,7 +70,7 @@ Key: Authorization
 Value: Bearer your-access-token
 
 3. Token Expiration and Refreshing the Token
-Tokens are valid for a limited time (by default, 5 minutes for the access token).
+Tokens are valid for a limited time (by default, 1 day for the access token).
 
 When the access token expires, use the refresh token to get a new access token.
 
